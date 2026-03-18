@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  container_doctor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: container_doctor
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - TARGET_CONTAINERS=web,api,db
+      - CHECK_INTERVAL=10
+      - LOG_LINES=50
+      - AUTO_FIX=true
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  web:
+    image: nginx:latest
+    container_name: web
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  api:
+    build: ./api
+    container_name: api
+    environment:
+      - DATABASE_URL=postgres://user:pass@db:5432/mydb
+      - POOL_SIZE=5
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=mydb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  db_data:

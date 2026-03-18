@@ -1,69 +1,43 @@
 # AI Workshop
 
-A collection of hands-on tutorials and examples for AI development, agent building, and modern tooling. Each tutorial includes complete working code, security considerations, and production-ready configurations.
+A growing collection of hands-on AI projects — from container monitoring agents to MCP servers. Each project includes complete working code, Docker support, and production-ready configurations.
 
-## 🚀 Tutorials
+## Projects
 
-### ✅ [MCP Server with Python](./mcp-server/) - **COMPLETE**
-A production-ready Model Context Protocol (MCP) server that scaffolds project structures. Built with FastMCP, containerized with Docker, and integrated with Claude Code.
+| # | Project | Description | Stack |
+|---|---------|-------------|-------|
+| 1 | [MCP Server](./mcp-server/) | Production-ready Model Context Protocol server that scaffolds project structures. Built with FastMCP, containerized with Docker, integrated with Claude Code. | Python, FastMCP, Docker |
+| 2 | [Docker Container Doctor](./docker-container-doctor/) | AI-powered agent that monitors Docker container logs, diagnoses errors using Claude, and auto-restarts containers when safe. | Python, Claude API, Docker |
 
-**Features:**
-- Project scaffolding for Python, Node.js, and Go
-- Path traversal protection and input validation
-- Docker containerization for reproducible deployment
-- Claude Code integration with full terminal workflow
-- Comprehensive security considerations
+## Getting Started
 
-**Quick Start:**
+Each project is self-contained with its own README, dependencies, and Docker setup.
+
 ```bash
-cd mcp-server
+# Clone the repo
+git clone https://github.com/balajeeasish/ai-workshop.git
+cd ai-workshop
+
+# Pick a project
+cd docker-container-doctor   # or mcp-server
+cp .env.example .env         # Add your API keys
 pip install -r requirements.txt
-python server.py
 ```
 
-*Coming soon:*
-- React Dashboard with AI Integration
-- FastAPI with OpenAI Integration  
-- Docker Multi-Stage Builds
-- Agent Security Best Practices
-
-## 🛠️ Tech Stack
-
-- **Python**: FastMCP, Docker, Claude Code
-- **JavaScript**: React, Node.js, modern tooling
-- **DevOps**: Docker, GitHub Actions, security scanning
-- **AI**: OpenAI, Anthropic, custom agents
-
-## 🔒 Security Focus
-
-Every tutorial includes:
-- Input validation and sanitization
-- Path traversal protection
-- Least-privilege token usage
-- Real-world CVE examples
-- Production deployment considerations
-
-## 📁 Structure
+## Repository Structure
 
 ```
 ai-workshop/
-├── mcp-server/          # ✅ COMPLETE: MCP server tutorial
-│   ├── server.py        # Main MCP server with scaffolding tools
-│   ├── Dockerfile       # Container configuration
-│   ├── requirements.txt # Python dependencies
-│   └── README.md        # Detailed setup and usage guide
-├── react-dashboard/       # Planned: React + AI tutorial  
-├── fastapi-integration/  # Planned: API + AI tutorial
-├── .gitignore            # Excludes "How to" articles and common files
-└── README.md            # This file
+├── mcp-server/                # MCP server with project scaffolding tools
+├── docker-container-doctor/   # AI container monitoring agent
+└── README.md
 ```
 
-## 🎯 Learning Goals
+## Security
 
-- Build production-ready AI tools
-- Understand security implications
-- Master modern development workflows
-- Create portfolio-worthy projects
+- API keys and secrets are stored in `.env` files (git-ignored)
+- Each project includes a `.env.example` with placeholder values
+- No credentials are committed to the repository
 
 ---
 
